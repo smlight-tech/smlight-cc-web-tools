@@ -30,6 +30,9 @@ const MOCKED_MODULES: PythonPackageSpec[] = [
   { package: 'pure-pcapy3', module: 'pure_pcapy3' },
   { package: 'idna', module: 'idna' },
   { package: 'typing_extensions', module: 'typing_extensions' },
+  { package: 'gpiod', module: 'gpiod' },
+  { package: 'rpds-py', module: 'rpds_py' },
+  { package: 'rpds-py', module: 'rpds' },
 
   // Internal modules not bundled by default with pyodide
   { package: 'ssl', module: 'ssl', version: '1.0.0' },
@@ -89,6 +92,13 @@ export async function setupPyodide(
       modules: new Map([[mod.module, dummyModuleLoaderPy]]),
     });
   }
+  // custom packed
+  const wheelPath = '/universal_silabs_flasher-0.0.15-py3-none-any.whl';
+
+  await micropip.install.callKwargs({
+    requirements: wheelPath,
+    deps: false,
+  });
 
   // Include our webserial transport
   micropip.add_mock_package.callKwargs({

@@ -8,6 +8,7 @@
     "lint": "eslint --ext .ts,.html src --ignore-path .gitignore && prettier \"src/**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html src --fix --ignore-path .gitignore && prettier \"src/**/*.ts\" --write --ignore-path .gitignore",
     "build": "script/build",
+    "develop": "script/develop",
     "prepublishOnly": "npm run build",
     "analyze": "cem analyze --litelement"
   },

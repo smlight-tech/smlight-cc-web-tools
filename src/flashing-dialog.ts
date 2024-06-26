@@ -310,6 +310,7 @@ export class FlashingDialog extends LitElement {
   private async detectRunningFirmware() {
     this.flashingStep = FlashingStep.PROBING;
 
+    // will use zigpy to probe firmware pt2
     try {
       await this.pyFlasher.probe_app_type();
     } catch (e) {
@@ -498,7 +499,7 @@ export class FlashingDialog extends LitElement {
       const { Version } = this.pyodide.pyimport(
         'universal_silabs_flasher.common'
       );
-
+      console.log(this.pyFlasher);
       const appType: ApplicationType = this.pyFlasher.app_type.value;
       const compatibleFirmwareType: FirmwareType | undefined =
         ApplicationTypeToFirmwareType[appType];

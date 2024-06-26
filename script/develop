@@ -14,5 +14,5 @@ cp src/*.py src/*.txt dist
 
 npm exec -- serve -p 5010 &
 npm exec -- tsc --watch &
-npm exec -- rollup -c --watch &
+npm exec -- rollup -c &
 wait
