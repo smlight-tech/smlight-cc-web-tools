@@ -325,7 +325,7 @@ export class FlashingDialog extends LitElement {
 
     try {
       console.log("flashing firmware")
-      this.pyFlasher.set_firmware(this.selectFirmware);
+      this.pyFlasher.set_firmware(this.selectedFirmware);
       console.log("set firmware set")
       await this.pyFlasher.connect();
       console.log("connected")

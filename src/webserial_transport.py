@@ -61,7 +61,14 @@ class WebSerialWrapper:
         self._rts = value
         await self._set_signals()
 
-
+    async def bootloader(self):
+        await self.set_dtr(True)
+        await self.set_rts(True)
+        await asyncio.sleep(0.1)
+        await self.set_rts(False)
+        await asyncio.sleep(0.1)
+        await self.set_dtr(True)
+        print("Reset sequence completed")
 class WebSerialTransport(asyncio.Transport):
     def __init__(
         self,
@@ -88,7 +95,6 @@ class WebSerialTransport(asyncio.Transport):
     async def _writer_loop(self) -> None:
         while True:
             chunk = await self._write_queue.get()
-            _LOGGER.info("writing chunk %s", ' '.join(f"{c:02X}" for c in chunk))
             try:
                 await self._js_writer.write(js.Uint8Array.new(chunk))
                 _LOGGER.info("wrote chunk %s", ' '.join(f"{c:02X}" for c in chunk))
@@ -99,11 +105,9 @@ class WebSerialTransport(asyncio.Transport):
     async def _reader_loop(self) -> None:
         while True:
             result = await self._js_reader.read()
-            _LOGGER.info("Reading chunk %s", ' '.join(f"{c:02X}" for c in result.value))
             if result.done:
                 self._cleanup(RuntimeError("Other side has closed"))
                 return
-            _LOGGER.info("Reading chunk %s", ' '.join(f"{c:02X}" for c in result.value))
             self._protocol.data_received(bytes(result.value))
 
     def write(self, data: bytes) -> None:
@@ -182,11 +186,9 @@ async def create_serial_connection(
 
     protocol = protocol_factory()
     transport = WebSerialTransport(loop, protocol, _SERIAL_PORT)
-    # transport.serial = WebSerialWrapper(transport._port)
-    # _LOGGER.info("transport %s", dir(transport))
-    # await transport.serial.set_dtr(False)
-    # _LOGGER.info("port %s", dir(transport._port))
-    # await transport._port.setSignals({"dataTerminalReady": False})
+
+    transport.serial = WebSerialWrapper(transport._port)
+    _LOGGER.info("transport.serial %s", dir(transport.serial))
 
     return transport, protocol
 

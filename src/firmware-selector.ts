@@ -35,8 +35,9 @@ export async function parseFirmwareBuffer(
   const { FirmwareFile } = pyodide.pyimport('smlight_cc_flasher.firmware');
 
   var firmware = FirmwareFile();
+  firmware.from_buffer(pyodide.toPy(buffer));
   // return firmware.read_hex.callKwargs(pyodide.toPy(buffer), {});
-  return firmware.from_buffer(pyodide.toPy(buffer));
+  return firmware
 
 
   // return await GBLImage.from_bytes.callKwargs(pyodide.toPy(buffer), {});
