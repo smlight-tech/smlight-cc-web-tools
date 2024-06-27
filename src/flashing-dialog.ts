@@ -263,9 +263,9 @@ export class FlashingDialog extends LitElement {
       .pyimport('webserial_transport')
       .set_global_serial_port(this.serialPort);
 
-    const PyApplicationType = this.pyodide.pyimport(
-      'universal_silabs_flasher.const'
-    ).ApplicationType;
+    // const PyApplicationType = this.pyodide.pyimport(
+    //   'universal_silabs_flasher.const'
+    // ).ApplicationType;
 
     // Pyodide currently seems to have issues passing double proxied objects, especially
     // with list comprehensions and generators. Until this is fixed, we need to
@@ -273,35 +273,17 @@ export class FlashingDialog extends LitElement {
     this.pyFlasher = this.pyodide
       .runPython(
         `
-      from universal_silabs_flasher.flasher import Flasher
+      from smlight_cc_flasher.flasher import Flasher
 
-      def create_flasher(baudrates, probe_methods, device):
-          return Flasher(
-              baudrates=baudrates.to_py(),
-              probe_methods=probe_methods.to_py(),
-              device=device,
-          )
+      def create_flasher(device):
+          return Flasher(device=device)  
 
       create_flasher
     `
       )
       .callKwargs({
-        baudrates: new Map([
-          [
-            PyApplicationType.GECKO_BOOTLOADER,
-            this.manifest.baudrates.bootloader,
-          ],
-          [PyApplicationType.CPC, this.manifest.baudrates.cpc],
-          [PyApplicationType.EZSP, this.manifest.baudrates.ezsp],
-          [PyApplicationType.SPINEL, this.manifest.baudrates.spinel],
-        ]),
-        probe_methods: [
-          PyApplicationType.GECKO_BOOTLOADER,
-          PyApplicationType.CPC,
-          PyApplicationType.EZSP,
-          PyApplicationType.SPINEL,
-        ],
-        device: '/dev/webserial', // the device name is ignored
+        device: '/dev/webserial',
+      // the device name is ignored
       });
 
     await this.detectRunningFirmware();
@@ -312,8 +294,11 @@ export class FlashingDialog extends LitElement {
 
     // will use zigpy to probe firmware pt2
     try {
-      await this.pyFlasher.probe_app_type();
+      console.log(this.pyFlasher._baudrate);
+      console.log(this.pyFlasher._device);
+      await this.pyFlasher.async_init();
     } catch (e) {
+      console.log(e);
       this.pyFlasher = undefined;
       this.serialPort = undefined;
 
@@ -336,16 +321,24 @@ export class FlashingDialog extends LitElement {
     this.flashingStep = FlashingStep.INSTALLING;
     this.uploadProgress = 0;
 
-    await this.pyFlasher.enter_bootloader();
+    //await this.pyFlasher.enter_bootloader();
 
     try {
-      await this.pyFlasher.flash_firmware.callKwargs(this.selectedFirmware, {
-        progress_callback: (current: number, total: number) => {
-          this.uploadProgress = current / total;
-        },
-      });
+      console.log("flashing firmware")
+      this.pyFlasher.set_firmware(this.selectFirmware);
+      console.log("set firmware set")
+      await this.pyFlasher.connect();
+      console.log("connected")
+      await this.pyFlasher.flash();
+
+      // await this.pyFlasher.flash_firmware.callKwargs(this.selectedFirmware, {
+      //   progress_callback: (current: number, total: number) => {
+      //     this.uploadProgress = current / total;
+      //   },
+      // });
       this.flashingStep = FlashingStep.DONE;
     } catch (e) {
+      console.log(e);
       this.flashingStep = FlashingStep.INSTALL_FAILED;
     }
   }
@@ -496,18 +489,16 @@ export class FlashingDialog extends LitElement {
       showDebugLogButton = false;
       headingText = this.manifest.product_name;
 
-      const { Version } = this.pyodide.pyimport(
-        'universal_silabs_flasher.common'
-      );
+      // const { Version } = this.pyodide.pyimport(
+      //   'universal_silabs_flasher.common'
+      // );
       console.log(this.pyFlasher);
-      const appType: ApplicationType = this.pyFlasher.app_type.value;
+      const appType: ApplicationType = ApplicationType.EZSP;
       const compatibleFirmwareType: FirmwareType | undefined =
         ApplicationTypeToFirmwareType[appType];
       const compatibleFirmware = this.manifest.firmwares.find(
         fw =>
-          fw.type === compatibleFirmwareType &&
-          Version(fw.version) > this.pyFlasher.app_version &&
-          !Version(fw.version).compatible_with(this.pyFlasher.app_version)
+          fw.type === compatibleFirmwareType 
       );
 
       // Show a one-click "upgrade" button if possible
@@ -517,7 +508,7 @@ export class FlashingDialog extends LitElement {
         upgradeButton = html`<mwc-button
           @click=${async () => {
             const response = await fetch(compatibleFirmware.url);
-            const firmwareData = await response.arrayBuffer();
+            const firmwareData = await response.blob();
 
             this.selectedFirmware = await parseFirmwareBuffer(
               this.pyodide,
@@ -568,7 +559,7 @@ export class FlashingDialog extends LitElement {
         ></firmware-selector>
 
         ${this.selectedFirmware
-          ? html`<p class="firmware-metadata">${this.getFirmwareMetadata()}</p>`
+          ? ''
           : ''}
 
         <mwc-button

@@ -15,7 +15,7 @@ import '@material/mwc-formfield';
 import '@material/mwc-radio';
 import '@material/mwc-circular-progress';
 
-type GBLImage = any;
+type FirmwareFile = any;
 const CUSTOM_UPLOAD_INDEX = 9999;
 
 async function readFile(file: Blob): Promise<ArrayBuffer> {
@@ -29,11 +29,17 @@ async function readFile(file: Blob): Promise<ArrayBuffer> {
 
 export async function parseFirmwareBuffer(
   pyodide: Pyodide,
-  buffer: ArrayBuffer
-): Promise<GBLImage> {
-  const { GBLImage } = pyodide.pyimport('universal_silabs_flasher.flasher');
+  buffer: Blob
+): Promise<FirmwareFile> {
+  // await pyodide.loadPackage('smlight_cc_flasher');
+  const { FirmwareFile } = pyodide.pyimport('smlight_cc_flasher.firmware');
 
-  return await GBLImage.from_bytes.callKwargs(pyodide.toPy(buffer), {});
+  var firmware = FirmwareFile();
+  // return firmware.read_hex.callKwargs(pyodide.toPy(buffer), {});
+  return firmware.from_buffer(pyodide.toPy(buffer));
+
+
+  // return await GBLImage.from_bytes.callKwargs(pyodide.toPy(buffer), {});
 }
 
 @customElement('firmware-selector')
@@ -47,7 +53,7 @@ export class FirmwareSelector extends LitElement {
   @state()
   private firmwareUploadIndex = 0;
 
-  private firmwareLoaded(firmware?: GBLImage) {
+  private firmwareLoaded(firmware?: FirmwareFile) {
     this.dispatchEvent(
       new CustomEvent('firmwareLoaded', {
         detail: { firmware },
@@ -85,20 +91,21 @@ export class FirmwareSelector extends LitElement {
       return;
     }
 
-    const firmwareData = await response.arrayBuffer();
+    // const firmwareData = await response.arrayBuffer();
+    const firmwareData = await response.blob();
 
     await this.loadFirmware(firmwareData);
   }
 
   private async customFirmwareChosen(event: Event) {
     const file = (event.target! as HTMLInputElement).files![0];
-    const firmwareData = await readFile(file);
+    // const firmwareData = await readFile(file);
 
-    await this.loadFirmware(firmwareData);
+    await this.loadFirmware(file);
   }
 
-  private async loadFirmware(buffer: ArrayBuffer) {
-    let firmware: GBLImage;
+  private async loadFirmware(buffer: Blob) {
+    let firmware: FirmwareFile;
 
     try {
       firmware = await parseFirmwareBuffer(this.pyodide, buffer);

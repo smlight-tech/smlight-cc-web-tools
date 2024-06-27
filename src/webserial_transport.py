@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import collections.abc
 import logging
+
 import sys
 import typing
 
@@ -33,6 +34,33 @@ async def close_port(port: Any) -> None:
     await port.close()
     _LOGGER.debug("Closed serial port")
 
+class WebSerialWrapper:
+    def __init__(self, port):
+        self._port = port
+        self._dtr = False
+        self._rts = False
+
+    async def _set_signals(self):
+        try:
+            js_signals = js.Object.new()
+            js_signals.dataTerminalReady = self._dtr
+            js_signals.requestToSend = self._rts
+            await self._port.setSignals(js_signals)
+            print(f"Signals set: DTR={self._dtr}, RTS={self._rts}")
+        except Exception as e:
+            print(f"Error setting signals: {e}")
+            print(f"Error type: {type(e)}")
+            print(f"Error details: {e.args}")
+
+
+    async def set_dtr(self, value):
+        self._dtr = value
+        await self._set_signals()
+
+    async def set_rts(self, value):
+        self._rts = value
+        await self._set_signals()
+
 
 class WebSerialTransport(asyncio.Transport):
     def __init__(
@@ -60,9 +88,10 @@ class WebSerialTransport(asyncio.Transport):
     async def _writer_loop(self) -> None:
         while True:
             chunk = await self._write_queue.get()
-
+            _LOGGER.info("writing chunk %s", ' '.join(f"{c:02X}" for c in chunk))
             try:
                 await self._js_writer.write(js.Uint8Array.new(chunk))
+                _LOGGER.info("wrote chunk %s", ' '.join(f"{c:02X}" for c in chunk))
             except Exception as e:
                 self._cleanup(e)
                 break
@@ -70,10 +99,11 @@ class WebSerialTransport(asyncio.Transport):
     async def _reader_loop(self) -> None:
         while True:
             result = await self._js_reader.read()
+            _LOGGER.info("Reading chunk %s", ' '.join(f"{c:02X}" for c in result.value))
             if result.done:
                 self._cleanup(RuntimeError("Other side has closed"))
                 return
-
+            _LOGGER.info("Reading chunk %s", ' '.join(f"{c:02X}" for c in result.value))
             self._protocol.data_received(bytes(result.value))
 
     def write(self, data: bytes) -> None:
@@ -143,6 +173,8 @@ async def create_serial_connection(
         await _SERIAL_PORT_CLOSING_QUEUE.pop()
 
     # `url` is ignored, `_SERIAL_PORT` is used instead
+
+
     await _SERIAL_PORT.open(
         baudRate=baudrate,
         flowControl="hardware" if rtscts else None,
@@ -150,6 +182,11 @@ async def create_serial_connection(
 
     protocol = protocol_factory()
     transport = WebSerialTransport(loop, protocol, _SERIAL_PORT)
+    # transport.serial = WebSerialWrapper(transport._port)
+    # _LOGGER.info("transport %s", dir(transport))
+    # await transport.serial.set_dtr(False)
+    # _LOGGER.info("port %s", dir(transport._port))
+    # await transport._port.setSignals({"dataTerminalReady": False})
 
     return transport, protocol
 
