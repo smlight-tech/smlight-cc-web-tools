@@ -1,0 +1,18 @@
+{
+	"product_name": "Zstack",
+	"baudrates": {
+		"bootloader": [115200],
+		"cpc": [460800, 115200, 230400],
+		"ezsp": [115200],
+		"spinel": [460800]
+	},
+	"firmwares": [
+		{
+			"name": "Zigbee (znp)",
+			"url": "./znp_LP_CC1352P7_smlight_NOSWAP.hex",
+			"type": "ncp-uart-hw",
+			"version": "7.1.4.0"
+		}
+	],
+	"allow_custom_firmware_upload": true
+}
