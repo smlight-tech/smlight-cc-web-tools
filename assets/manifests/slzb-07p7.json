@@ -9,7 +9,7 @@
 	"firmwares": [
 		{
 			"name": "Zigbee (Zstack)",
-			"url": "./znp_LP_CC1352P7_smlight_NOSWAP.hex",
+			"url": "https://smlight.tech/flasher/firmware/bin/slzb-07p7/cc1352p7_coordinator_20240316.hex",
 			"type": "ncp-uart-hw",
 			"version": "20240621"
 		}

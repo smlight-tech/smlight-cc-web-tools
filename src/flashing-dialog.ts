@@ -492,11 +492,9 @@ export class FlashingDialog extends LitElement {
       showDebugLogButton = false;
       headingText = this.manifest.product_name;
 
-      // const { Version } = this.pyodide.pyimport(
-      //   'universal_silabs_flasher.common'
-      // );
+      // Keep this for now, in case implement firmware detection
 
-      const appType: ApplicationType = ApplicationType.EZSP;
+      const appType: ApplicationType = ApplicationType.ZNP;
       const compatibleFirmwareType: FirmwareType | undefined =
         ApplicationTypeToFirmwareType[appType];
       const compatibleFirmware = this.manifest.firmwares.find(
