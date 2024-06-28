@@ -8,11 +8,11 @@
     />
     <meta
       name="Description"
-      content="Nabu Casa SkyConnect zigbee firmware flasher"
+      content="SMLIGHT TI CC2652 zigbee firmware flasher"
     />
     <base href="/" />
 
-    <title>Nabu Casa Zigbee Flasher</title>
+    <title>SMLIGHT Zigbee Flasher</title>
     <style>
       html,
       body {
@@ -58,17 +58,18 @@
 
       <p>To get started, plug your SLZB-07P7 into this computer.</p>
 
+
       <smlight-zigbee-flasher manifest="./assets/manifests/slzb-07p7.json">
         <span slot="button">Connect</span>
-      </nabucasa-zigbee-flasher>
+      </smlight-zigbee-flasher>
     </main>
 
     <script module>
       import(
         // In development we import locally.
         window.location.hostname === 'localhost'
-          ? '/dist/web/nabucasa-zigbee-flasher.js'
-          : 'https://unpkg.com/@nabucasa/sl-web-tools@0.10.0/dist/web/nabucasa-zigbee-flasher.js?module'
+          ? '/dist/web/smlight-zigbee-flasher.js'
+          : 'https://unpkg.com/@smlight/cc-web-tools@0.10.0/dist/web/smlight-zigbee-flasher.js?module'
       );
     </script>
   </body>

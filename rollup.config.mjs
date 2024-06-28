@@ -4,7 +4,7 @@ import terser from '@rollup/plugin-terser';
 import babel from '@rollup/plugin-babel';
 
 const config = {
-  input: 'dist/nabucasa-zigbee-flasher.js',
+  input: 'dist/smlight-zigbee-flasher.js',
   output: {
     dir: 'dist/web',
     format: 'module',

@@ -1,5 +1,5 @@
 {
-  "name": "@nabucasa/sl-web-tools",
+  "name": "@smlight/cc-web-tools",
   "description": "WebSerial firmware flasher for Silicon Labs Zigbee radios",
   "license": "MIT",
   "author": "puddly",
@@ -12,7 +12,7 @@
     "prepublishOnly": "npm run build",
     "analyze": "cem analyze --litelement"
   },
-  "main": "./dist/nabucasa-zigbee-flasher.js",
+  "main": "./dist/smlight-zigbee-flasher.js",
   "files": [
     "dist",
     "src"

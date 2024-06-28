@@ -4,8 +4,8 @@ import type { Manifest } from './const';
 
 import '@material/mwc-button';
 
-@customElement('nabucasa-zigbee-flasher')
-export class NabuCasaSilabsFlasher extends LitElement {
+@customElement('smlight-zigbee-flasher')
+export class SmlightCCFlasher extends LitElement {
   @property()
   public manifest!: string;
 
@@ -39,6 +39,6 @@ export class NabuCasaSilabsFlasher extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'nabucasa-zigbee-flasher': NabuCasaSilabsFlasher;
+    'smlight-zigbee-flasher': SmlightCCFlasher;
   }
 }
