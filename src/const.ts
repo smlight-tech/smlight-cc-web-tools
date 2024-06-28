@@ -67,4 +67,5 @@ export interface Manifest {
   usb_filters: USBFilter[];
   firmwares: Firmware[];
   allow_custom_firmware_upload: boolean;
+  m33: boolean;
 }
