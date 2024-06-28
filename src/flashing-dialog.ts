@@ -286,7 +286,8 @@ export class FlashingDialog extends LitElement {
         // the device name is ignored
       });
 
-    await this.detectRunningFirmware();
+    // await this.detectRunningFirmware();
+    this.selectFirmware();
   }
 
   private async detectRunningFirmware() {
@@ -321,21 +322,23 @@ export class FlashingDialog extends LitElement {
     this.flashingStep = FlashingStep.INSTALLING;
     this.uploadProgress = 0;
 
-    //await this.pyFlasher.enter_bootloader();
+    try {
+      await this.pyFlasher.async_init();
+      await this.pyFlasher.connect();
+    } catch (e) {
+      this.flashingStep = FlashingStep.PROBING_FAILED;
+      return;
+    }
 
     try {
-      console.log('flashing firmware');
       this.pyFlasher.set_firmware(this.selectedFirmware);
-      console.log('set firmware set');
-      await this.pyFlasher.connect();
-      console.log('connected');
-      await this.pyFlasher.flash();
 
-      // await this.pyFlasher.flash_firmware.callKwargs(this.selectedFirmware, {
-      //   progress_callback: (current: number, total: number) => {
-      //     this.uploadProgress = current / total;
-      //   },
-      // });
+      await this.pyFlasher.flash.callKwargs({
+        progress_callback: (current: number, total: number) => {
+          this.uploadProgress = current / total;
+        },
+      });
+
       this.flashingStep = FlashingStep.DONE;
     } catch (e) {
       console.log(e);
@@ -439,7 +442,7 @@ export class FlashingDialog extends LitElement {
           </mwc-circular-progress>
         </p>
         <p class="centered">
-          Connecting...
+          Downloading...
           <br />
           This can take a few seconds.
         </p>
@@ -472,7 +475,7 @@ export class FlashingDialog extends LitElement {
               </p>
             </section>`
           : ''}
-        <p>The running firmware could not be detected.</p>
+        <p>The USB device could not be detected.</p>
 
         <p>
           Make sure the USB port works and if you are using a USB extension

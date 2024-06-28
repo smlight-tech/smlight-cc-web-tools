@@ -184,9 +184,7 @@ async def create_serial_connection(
 
     protocol = protocol_factory()
     transport = WebSerialTransport(loop, protocol, _SERIAL_PORT)
-
     transport.serial = WebSerialWrapper(transport._port)
-    _LOGGER.info("transport.serial %s", dir(transport.serial))
 
     return transport, protocol
 
