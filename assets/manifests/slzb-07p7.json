@@ -9,9 +9,21 @@
 	"firmwares": [
 		{
 			"name": "Zigbee (Zstack)",
-			"url": "https://smlight.tech/flasher/firmware/bin/slzb-07p7/cc1352p7_coordinator_20240316.hex",
-			"type": "ncp-uart-hw",
-			"version": "20240621"
+			"url": "https://smlight.tech/flasher/firmware/bin/slzb-07p7/download.php?file=cc1352p7_coordinator_20240316.hex",
+			"type": "znp-uart",
+			"version": "20240316"
+		},
+		{
+			"name": "Router",
+			"url": "https://smlight.tech/flasher/firmware/bin/slzb-07p7/download.php?file=zr_lp_cc1352p7_ext_smlight-20240513.hex",
+			"type": "zr-uart",
+			"version": "20240513"
+		},
+		{
+			"name": "Thread",
+			"url": "https://smlight.tech/flasher/firmware/bin/slzb-07p7/download.php?file=ot-rcp-slzb-07p7-ext.hex",
+			"type": "ot-rcp",
+			"version": "1.3-1.0"
 		}
 	],
 	"allow_custom_firmware_upload": true,
