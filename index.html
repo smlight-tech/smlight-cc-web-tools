@@ -67,9 +67,9 @@
     <script module>
       import(
         // In development we import locally.
-        window.location.hostname === 'localhost'
-          ? '/dist/web/smlight-zigbee-flasher.js'
-          : 'https://unpkg.com/@smlight/cc-web-tools@0.10.0/dist/web/smlight-zigbee-flasher.js?module'
+        // window.location.hostname === 'localhost' ?
+        './dist/web/smlight-zigbee-flasher.js'
+        // : 'https://unpkg.com/@smlight/cc-web-tools@0.10.0/dist/web/smlight-zigbee-flasher.js?module'
       );
     </script>
   </body>
