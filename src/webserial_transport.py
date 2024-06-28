@@ -39,6 +39,7 @@ class WebSerialWrapper:
         self._port = port
         self._dtr = False
         self._rts = False
+        self.webserial = True
 
     async def _set_signals(self):
         try:
@@ -46,11 +47,9 @@ class WebSerialWrapper:
             js_signals.dataTerminalReady = self._dtr
             js_signals.requestToSend = self._rts
             await self._port.setSignals(js_signals)
-            print(f"Signals set: DTR={self._dtr}, RTS={self._rts}")
         except Exception as e:
-            print(f"Error setting signals: {e}")
-            print(f"Error type: {type(e)}")
-            print(f"Error details: {e.args}")
+            print(f"Error setting serial signals: {e}")
+
 
 
     async def set_dtr(self, value):
@@ -97,7 +96,6 @@ class WebSerialTransport(asyncio.Transport):
             chunk = await self._write_queue.get()
             try:
                 await self._js_writer.write(js.Uint8Array.new(chunk))
-                _LOGGER.info("wrote chunk %s", ' '.join(f"{c:02X}" for c in chunk))
             except Exception as e:
                 self._cleanup(e)
                 break

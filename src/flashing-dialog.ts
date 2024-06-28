@@ -492,7 +492,7 @@ export class FlashingDialog extends LitElement {
       // const { Version } = this.pyodide.pyimport(
       //   'universal_silabs_flasher.common'
       // );
-      console.log(this.pyFlasher);
+
       const appType: ApplicationType = ApplicationType.EZSP;
       const compatibleFirmwareType: FirmwareType | undefined =
         ApplicationTypeToFirmwareType[appType];

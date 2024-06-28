@@ -31,17 +31,24 @@ export async function parseFirmwareBuffer(
   pyodide: Pyodide,
   buffer: Blob
 ): Promise<FirmwareFile> {
-  // await pyodide.loadPackage('smlight_cc_flasher');
   const { FirmwareFile } = pyodide.pyimport('smlight_cc_flasher.firmware');
-
+  //could also parse packed bin file here and pass ArrayBuffer.
   var firmware = FirmwareFile();
   firmware.from_buffer(pyodide.toPy(buffer));
-  // return firmware.read_hex.callKwargs(pyodide.toPy(buffer), {});
   return firmware
 
-
-  // return await GBLImage.from_bytes.callKwargs(pyodide.toPy(buffer), {});
 }
+// export async function parseFirmwareBuffer(
+//   pyodide: Pyodide,
+//   buffer: ArrayBuffer
+// ): Promise<FirmwareFile> {
+//   const { FirmwareFile } = pyodide.pyimport('smlight_cc_flasher.firmware');
+//   //could also parse packed bin file here and pass ArrayBuffer.
+//   var firmware = FirmwareFile();
+//   firmware.from_buffer(pyodide.toPy(buffer));
+//   return firmware
+
+// }
 
 @customElement('firmware-selector')
 export class FirmwareSelector extends LitElement {
@@ -100,7 +107,7 @@ export class FirmwareSelector extends LitElement {
 
   private async customFirmwareChosen(event: Event) {
     const file = (event.target! as HTMLInputElement).files![0];
-    // const firmwareData = await readFile(file);
+    var firmwareData = await readFile(file);
 
     await this.loadFirmware(file);
   }
