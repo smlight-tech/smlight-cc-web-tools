@@ -326,6 +326,7 @@ export class FlashingDialog extends LitElement {
       await this.pyFlasher.async_init();
       await this.pyFlasher.connect();
     } catch (e) {
+      console.log(e);
       this.flashingStep = FlashingStep.PROBING_FAILED;
       return;
     }
