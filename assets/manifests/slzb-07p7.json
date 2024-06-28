@@ -1,0 +1,19 @@
+{
+	"product_name": "SLZB-07P7",
+	"usb_filters": [
+		{
+			"pid": 60000,
+			"vid": 4292
+		}
+	],
+	"firmwares": [
+		{
+			"name": "Zigbee (Zstack)",
+			"url": "./znp_LP_CC1352P7_smlight_NOSWAP.hex",
+			"type": "ncp-uart-hw",
+			"version": "7.1.4.0"
+		}
+	],
+	"allow_custom_firmware_upload": true,
+	"m33": false
+}
