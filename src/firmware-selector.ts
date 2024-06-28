@@ -29,26 +29,13 @@ async function readFile(file: Blob): Promise<ArrayBuffer> {
 
 export async function parseFirmwareBuffer(
   pyodide: Pyodide,
-  buffer: Blob
+  buffer: ArrayBuffer
 ): Promise<FirmwareFile> {
   const { FirmwareFile } = pyodide.pyimport('smlight_cc_flasher.firmware');
-  //could also parse packed bin file here and pass ArrayBuffer.
-  var firmware = FirmwareFile();
-  firmware.from_buffer(pyodide.toPy(buffer));
-  return firmware
 
+  const firmware = FirmwareFile.callKwargs({ buffer: pyodide.toPy(buffer) });
+  return firmware;
 }
-// export async function parseFirmwareBuffer(
-//   pyodide: Pyodide,
-//   buffer: ArrayBuffer
-// ): Promise<FirmwareFile> {
-//   const { FirmwareFile } = pyodide.pyimport('smlight_cc_flasher.firmware');
-//   //could also parse packed bin file here and pass ArrayBuffer.
-//   var firmware = FirmwareFile();
-//   firmware.from_buffer(pyodide.toPy(buffer));
-//   return firmware
-
-// }
 
 @customElement('firmware-selector')
 export class FirmwareSelector extends LitElement {
@@ -99,20 +86,19 @@ export class FirmwareSelector extends LitElement {
       return;
     }
 
-    // const firmwareData = await response.arrayBuffer();
-    const firmwareData = await response.blob();
+    const firmwareData = await response.arrayBuffer();
 
     await this.loadFirmware(firmwareData);
   }
 
   private async customFirmwareChosen(event: Event) {
     const file = (event.target! as HTMLInputElement).files![0];
-    var firmwareData = await readFile(file);
+    const firmwareData = await readFile(file);
 
-    await this.loadFirmware(file);
+    await this.loadFirmware(firmwareData);
   }
 
-  private async loadFirmware(buffer: Blob) {
+  private async loadFirmware(buffer: ArrayBuffer) {
     let firmware: FirmwareFile;
 
     try {

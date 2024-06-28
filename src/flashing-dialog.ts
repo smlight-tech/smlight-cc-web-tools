@@ -283,7 +283,7 @@ export class FlashingDialog extends LitElement {
       )
       .callKwargs({
         device: '/dev/webserial',
-      // the device name is ignored
+        // the device name is ignored
       });
 
     await this.detectRunningFirmware();
@@ -324,11 +324,11 @@ export class FlashingDialog extends LitElement {
     //await this.pyFlasher.enter_bootloader();
 
     try {
-      console.log("flashing firmware")
+      console.log('flashing firmware');
       this.pyFlasher.set_firmware(this.selectedFirmware);
-      console.log("set firmware set")
+      console.log('set firmware set');
       await this.pyFlasher.connect();
-      console.log("connected")
+      console.log('connected');
       await this.pyFlasher.flash();
 
       // await this.pyFlasher.flash_firmware.callKwargs(this.selectedFirmware, {
@@ -497,8 +497,7 @@ export class FlashingDialog extends LitElement {
       const compatibleFirmwareType: FirmwareType | undefined =
         ApplicationTypeToFirmwareType[appType];
       const compatibleFirmware = this.manifest.firmwares.find(
-        fw =>
-          fw.type === compatibleFirmwareType 
+        fw => fw.type === compatibleFirmwareType
       );
 
       // Show a one-click "upgrade" button if possible
@@ -508,8 +507,7 @@ export class FlashingDialog extends LitElement {
         upgradeButton = html`<mwc-button
           @click=${async () => {
             const response = await fetch(compatibleFirmware.url);
-            const firmwareData = await response.blob();
-
+            const firmwareData = await response.arrayBuffer();
             this.selectedFirmware = await parseFirmwareBuffer(
               this.pyodide,
               firmwareData
@@ -558,9 +556,7 @@ export class FlashingDialog extends LitElement {
           @firmwareLoaded=${this.onFirmwareLoaded}
         ></firmware-selector>
 
-        ${this.selectedFirmware
-          ? ''
-          : ''}
+        ${this.selectedFirmware ? '' : ''}
 
         <mwc-button
           slot="primaryAction"
