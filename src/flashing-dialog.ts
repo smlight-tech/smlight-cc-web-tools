@@ -606,8 +606,8 @@ export class FlashingDialog extends LitElement {
       content = html`
         <p>Firmware has been successfully installed.</p>
 
-        <mwc-button slot="primaryAction" @click=${this.detectRunningFirmware}>
-          Continue
+        <mwc-button slot="primaryAction" dialogAction="close">
+          Done
         </mwc-button>
       `;
     }
