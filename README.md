@@ -1,5 +1,5 @@
-# sl-web-tools
-Open source tools to allow working with USB sticks containing SL chips in the browser.
+# cc-web-tools
+Open source tools to allow working with USB sticks containing TI CC13xx/CC26XX chips in the browser.
 Powered by [Smlight-cc-flasher](https://github.com/smlight-workspace/smlight-cc-flasher) and [Pyodide](https://pyodide.org/en/stable/).
 
 ## Setup
