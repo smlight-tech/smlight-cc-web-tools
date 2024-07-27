@@ -10,11 +10,11 @@ export class SmlightCCFlasher extends LitElement {
   public manifest!: string;
 
   async openFlasherDialog() {
-    import('./flashing-dialog');
+    import('./sm-flashing-dialog');
     const response = await fetch(this.manifest);
     const manifest: Manifest = await response.json();
 
-    const dialog = document.createElement('flashing-dialog');
+    const dialog = document.createElement('sm-flashing-dialog');
     dialog.manifest = manifest;
     document.body.appendChild(dialog);
   }

@@ -49,7 +49,7 @@ enum FlashingStep {
   DONE,
 }
 
-@customElement('flashing-dialog')
+@customElement('sm-flashing-dialog')
 export class FlashingDialog extends LitElement {
   static styles = css`
     :host {
@@ -641,6 +641,6 @@ export class FlashingDialog extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'flashing-dialog': FlashingDialog;
+    'sm-flashing-dialog': FlashingDialog;
   }
 }
