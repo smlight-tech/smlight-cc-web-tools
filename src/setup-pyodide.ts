@@ -93,7 +93,7 @@ export async function setupPyodide(
     });
   }
   // custom packed
-  const wheelPath = '/smlight_cc_flasher-0.0.3-py3-none-any.whl';
+  const wheelPath = '/smlight_cc_flasher-0.0.4-py3-none-any.whl';
 
   await micropip.install.callKwargs({
     requirements: wheelPath,
