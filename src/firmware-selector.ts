@@ -148,7 +148,7 @@ export class FirmwareSelector extends LitElement {
                 class=${classMap({
                   hidden: this.firmwareUploadIndex !== CUSTOM_UPLOAD_INDEX,
                 })}
-                accept=".gbl"
+                accept=".hex"
                 ?disabled=${this.firmwareUploadIndex !== CUSTOM_UPLOAD_INDEX}
                 @change=${this.customFirmwareChosen}
                 >Upload</usf-file-upload
