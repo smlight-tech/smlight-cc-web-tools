@@ -1,3 +1,7 @@
+#  * (c) SMLIGHT (https://github.com/smlight-tech).
+#  * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
+#  * www.smlight.tech
+
 from __future__ import annotations
 
 import asyncio

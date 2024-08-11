@@ -1,3 +1,8 @@
+/** (c) SMLIGHT (https://github.com/smlight-tech).
+  * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
+  * www.smlight.tech
+*/
+
 import { LitElement, html, css } from 'lit';
 import { customElement, state, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';

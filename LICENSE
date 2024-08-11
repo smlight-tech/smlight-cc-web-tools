@@ -1,0 +1,52 @@
+SMLIGHT-CC-WEB-TOOLS Open-Source Restrictive License. Version 20240630
+
+THIS SOFTWARE LICENSE AGREEMENT (“AGREEMENT”) GOVERNS YOUR USE OF THE LICENSED MATERIALS. INSTALLING, COPYING OR OTHERWISE USING THIS SOFTWARE, INDICATES YOUR ACCEPTANCE OF THE TERMS OF THIS AGREEMENT REGARDLESS OF WHETHER YOU MADE ANY FORMAL ACCEPTANCE OR NOT. IF YOU DO NOT AGREE WITH THESE TERMS AND CONDITIONS OR IF YOU ARE NOT AUTHORIZED TO ACCEPT THE TERMS OF THIS LICENSE ON BEHALF OF YOUR EMPLOYER, DECLINE THE LICENSE TERMS AND DO NOT USE THE SOFTWARE OR DOCUMENTATION. THESE TERMS GOVERN YOUR CONTINUED USE OF THE LICENSED MATERIALS THAT YOU DOWNLOAD NOW OR IN THE FUTURE, INCLUDING SUCH ADDITIONAL SOFTWARE MADE AVAILABLE TO YOU THROUGH THE LICENSED MATERIALS YOU HAVE SELECTED, AND ALL UPDATES AND VERSIONS OF SUCH SOFTWARE.  
+
+1. Grant of License.  
+Licensor grants the Licensee a non-exclusive, non-transferable, revocable license to:  
+2.1. Use the source code of the Software and any Derivatives thereof for private and/or non-commercial purposes and/or non-public purposes.  
+
+2. Restrictions.  
+This License prohibits use of the Software by you in following forms:  
+2.1. The Licensee shall not use the Software, or any Derivatives thereof, in any commercial product or service without the prior written permission of Licensor.  
+2.2. The Licensee shall not make any end products (compilled results of Software code) publicly available without Licensor's written permission.  
+2.3. The Licensee shall not remove this license file README.md from any allowed Derivatives of the Software without Licensor's written permission.  
+2.4. The Licensee shall not publish or retain Software or its Derivatives, without Licensor's written permission, on the servers other than servers based on public domain https://github.com/, include subdomains of aforementioned domain.
+2.5. The Licensee shall not change the name of repository or any allowed Derivatives of the Software without Licensor's written permission.  
+2.6. The Licensee shall not distribute, sublicense, rent, lease, or otherwise transfer the Software to any third party without Licensor's written permission.  
+2.7. The Licensee shall not modify, adapt, translate, reverse engineer, decompile, or disassemble the Software, or create derivative works based on the Software, for any purpose other than those expressly permitted by this License Agreement, without Licensor's written permission.  
+
+3. Ownership  
+3.1. Licensor retains all right, title, and interest in and to the Firmware, including all intellectual property rights.
+
+4. Disclaimer of Warranty.  
+4.1. LICENSED MATERIALS ARE PROVIDED TO LICENSEE "AS IS" AND "WITH ALL FAULTS", WITHOUT WARRANTY OF ANY KIND FROM LICENSOR. LICENSEE ASSUMES ALL RISKS THAT LICENSED MATERIALS ARE SUITABLE OR ACCURATE FOR LICENSEE’S NEEDS AND LICENSEE’S USE OF THE LICENSED MATERIALS IS AT LICENSEE’S OWN DISCRETION AND RISK. SMLIGHT DISCLAIMS ALL EXPRESS AND IMPLIED WARRANTIES FOR LICENSED MATERIALS INCLUDING, WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, TITLE, OR QUIET ENJOYMENT.
+
+5. Limitation of Liability  
+5.1. NEITHER LICENSOR NOR ITS AFFILIATES OR SUPPLIERS SHALL BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES OR LOSS (INCLUDING DAMAGES FOR LOSS OF BUSINESS, LOSS OF PROFITS, OR THE LIKE), ARISING OUT OF THIS AGREEMENT WHETHER BASED ON BREACH OF CONTRACT, INTELLECTUAL PROPERTY INFRINGEMENT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, PRODUCT LIABILITY OR OTHERWISE, OR LICENSEE’S USE OF OR INABILITY TO USE THE LICENSOR SOFTWARE AND/OR CONFIDENTIAL INFORMATION, EVEN IF LICENSOR OR ITS REPRESENTATIVES HAVE BEEN ADVISED OF OR OTHERWISE SHOULD KNOW ABOUT THE POSSIBILITY OF SUCH DAMAGES.
+
+6. Termination  
+6.1. Licensor may terminate this License at any time.  
+
+7. Governing Law  
+7.1. This License shall be governed by and construed in accordance with the laws of Ukraine.  
+
+8. Entire Agreement  
+8.1. This Agreement constitutes the entire agreement between the parties hereto relating to the subject matter hereof and supersedes all prior oral and written and all contemporaneous oral negotiations, commitments and understandings of the parties relating to such subject matter. No modifications to this Agreement shall be enforceable except when in writing and signed by an authorized signatory of each party.  
+
+9. Severability  
+9.1. If any provision of this License is held to be invalid or unenforceable, such provision shall be struck and the remaining provisions shall remain in full force and effect.  
+
+10. DEFINITIONS  
+As used in this Agreement, the following capitalized terms are defined as follows:  
+10.1 "License" or "Agreement" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 10 of this document.
+10.2. "You" (or "Your") or "Licensee" shall mean an individual or Legal Entity exercising permissions granted by this License.  
+10.3. “Affiliate” means any company that controls, is controlled by, or is under common control with a party to this Agreement, where “control” means ownership of a majority of the voting interests, the ability to elect a majority of the board, or the ability to otherwise control the management of a party.  
+10.4. "Software" or "Licensed materials" means a software or its Derivatives and any updates and improvements to such software by Licensor, which is available by the address https://github.com/smlight-tech/smlight-cc-web-tools and at https://smlight.tech/flasher (with all sub-pages/sub-directories).  
+10.5. “Confidential Information” means any non-public information disclosed by either party to the other party, either directly or indirectly, in writing, orally or by inspection of tangible objects (including without limitation documents, prototypes, samples, facilities, technical data, licensed materials, and equipment), which is designated as “Confidential,” “Proprietary” or some similar designation or which the recipient has reason to know is treated as confidential by the discloser.  
+10.6. “Intellectual Property Rights” means all current and future patent rights, copyrights, moral rights, rights of priority, trade secrets, mask work rights, topography rights, know how, industrial design rights, trademarks (including service marks), trade dress and other similar intangible rights, whether registered or unregistered, which may exist anywhere in the world, and all applications and registrations with respect to any of the foregoing  
+10.7. "Licensor" or “SMLIGHT” means a legal representative of the owner of the SMLIGHT trademark, registered under the law of Ukraine with certificate number 345274.  
+10.8. "Derivative" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Software and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship.  
+
+
+30 June 2024

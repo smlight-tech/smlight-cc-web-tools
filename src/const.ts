@@ -1,3 +1,8 @@
+/** (c) SMLIGHT (https://github.com/smlight-tech).
+  * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
+  * www.smlight.tech
+*/
+
 import { mdiMulticast, mdiZigbee } from '@mdi/js';
 
 export const mdiFirmware =
