@@ -1,7 +1,7 @@
 # SMLIGHT-CC-WEB-TOOLS
 
 ## 1. Description
-SMLIGHT-CC-WEB-TOOLS is the open source ([license](https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE)) tools for flashing USB dongles built on Texas Instruments CC13xx/CC26XX chips in the web browser.
+SMLIGHT-CC-WEB-TOOLS is the open source ([license](https://github.com/smlight-tech/smlight-cc-web-tools?tab=License-1-ov-file)) tools for flashing USB dongles built on Texas Instruments CC13xx/CC26XX chips in the web browser.
 
 **READY-TO-USE DEPLOYED WEB VERSION**  
 is available by this link: https://smlight.tech/flasher/
@@ -66,4 +66,4 @@ npm run build
 
 
 ## 5. Legal and Admin
-(c) SMLIGHT. All rights reserved. [License](https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE)
+(c) SMLIGHT. All rights reserved. [License](https://github.com/smlight-tech/smlight-cc-web-tools?tab=License-1-ov-file)
