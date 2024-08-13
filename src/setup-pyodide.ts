@@ -97,13 +97,6 @@ export async function setupPyodide(
       modules: new Map([[mod.module, dummyModuleLoaderPy]]),
     });
   }
-  // custom packed
-  const wheelPath = '/smlight_cc_flasher-0.0.4-py3-none-any.whl';
-
-  await micropip.install.callKwargs({
-    requirements: wheelPath,
-    deps: false,
-  });
 
   // Include our webserial transport
   micropip.add_mock_package.callKwargs({

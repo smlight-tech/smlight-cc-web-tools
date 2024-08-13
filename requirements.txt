@@ -3,4 +3,5 @@ intelHex==2.3.0
 pyserial==3.5
 pyserial-asyncio==0.6
 python_magic==0.4.27
+smlight-cc-flasher==0.0.5
 
