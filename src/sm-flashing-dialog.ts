@@ -1,7 +1,7 @@
 /** (c) SMLIGHT (https://github.com/smlight-tech).
-  * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
-  * www.smlight.tech
-*/
+ * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
+ * www.smlight.tech
+ */
 
 import { LitElement, html, css } from 'lit';
 import { customElement, state, property, query } from 'lit/decorators.js';
@@ -268,10 +268,6 @@ export class FlashingDialog extends LitElement {
       .pyimport('webserial_transport')
       .set_global_serial_port(this.serialPort);
 
-    // const PyApplicationType = this.pyodide.pyimport(
-    //   'universal_silabs_flasher.const'
-    // ).ApplicationType;
-
     // Pyodide currently seems to have issues passing double proxied objects, especially
     // with list comprehensions and generators. Until this is fixed, we need to
     // explicitly convert the types with a wrapper function.
@@ -365,7 +361,7 @@ export class FlashingDialog extends LitElement {
       this.debugLog
     )}`;
 
-    downloadFile(debugText, 'silabs_flasher.log');
+    downloadFile(debugText, 'smlight_flasher.log');
   }
 
   private formatHeadingText(text: string) {
