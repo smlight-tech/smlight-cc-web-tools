@@ -14,7 +14,7 @@ pyserial==3.5
 pyserial-asyncio==0.6
 pysmlight==0.0.12
 python-magic==0.4.27
-smlight-cc-flasher==0.0.5
+smlight-cc-flasher==0.1.0
 tqdm==4.66.4
 typing_extensions==4.12.2
 yarl==1.9.4

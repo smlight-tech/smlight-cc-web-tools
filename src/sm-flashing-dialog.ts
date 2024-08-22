@@ -276,15 +276,16 @@ export class FlashingDialog extends LitElement {
         `
       from smlight_cc_flasher.flasher import Flasher
 
-      def create_flasher(device, m33):
-          return Flasher(device=device, m33=m33)
+      def create_flasher(device, m33, bsl2):
+          return Flasher(device=device, m33=m33, bsl2=bsl2)
 
       create_flasher
-    `
+      `
       )
       .callKwargs({
         device: '/dev/webserial', // the device name is ignored
         m33: this.manifest.m33,
+        bsl2: this.manifest.bsl2 || false,
       });
 
     // await this.detectRunningFirmware();

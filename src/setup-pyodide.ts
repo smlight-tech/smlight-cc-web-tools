@@ -1,7 +1,7 @@
-/** (c) SMLIGHT (https://github.com/smlight-tech). All rights reserved.  
-  * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
-  * www.smlight.tech
-*/
+/** (c) SMLIGHT (https://github.com/smlight-tech). All rights reserved.
+ * Subject to: https://github.com/smlight-tech/smlight-cc-web-tools/LICENSE
+ * www.smlight.tech
+ */
 
 import dummyModuleLoaderPy from './dummy_module_loader.py';
 import venvRequirementsTxt from './requirements.txt';

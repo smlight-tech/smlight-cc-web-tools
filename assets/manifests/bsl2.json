@@ -1,0 +1,13 @@
+{
+	"product_name": "Generic CC26xx",
+	"usb_filters": [
+		{
+			"pid": 60000,
+			"vid": 4292
+		}
+	],
+	"firmwares": [],
+	"allow_custom_firmware_upload": true,
+	"m33": false,
+	"bsl2": true
+}
